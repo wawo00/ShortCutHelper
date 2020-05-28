@@ -1,4 +1,4 @@
-package com.xys.badge_lib;
+package com.roy.badge_lib;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v7.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -90,7 +90,7 @@ public final class BadgeUtil {
      * @param count   count
      */
     private static void setBadgeOfSony(Context context, int count) {
-        String launcherClassName = com.xys.badge_lib.AppInfoUtil.getLauncherClassName(context);
+        String launcherClassName = AppInfoUtil.getLauncherClassName(context);
         if (launcherClassName == null) {
             return;
         }
@@ -115,7 +115,7 @@ public final class BadgeUtil {
      */
     private static void setBadgeOfSumsung(Context context, int count) {
         // 获取你当前的应用
-        String launcherClassName = com.xys.badge_lib.AppInfoUtil.getLauncherClassName(context);
+        String launcherClassName = AppInfoUtil.getLauncherClassName(context);
         if (launcherClassName == null) {
             return;
         }
@@ -135,7 +135,7 @@ public final class BadgeUtil {
     private static void setBadgeOfHTC(Context context, int count) {
         Intent intentNotification = new Intent("com.htc.launcher.action.SET_NOTIFICATION");
         ComponentName localComponentName = new ComponentName(context.getPackageName(),
-                com.xys.badge_lib.AppInfoUtil.getLauncherClassName(context));
+                AppInfoUtil.getLauncherClassName(context));
         intentNotification.putExtra("com.htc.launcher.extra.COMPONENT", localComponentName.flattenToShortString());
         intentNotification.putExtra("com.htc.launcher.extra.COUNT", count);
         context.sendBroadcast(intentNotification);
@@ -155,7 +155,7 @@ public final class BadgeUtil {
     private static void setBadgeOfNova(Context context, int count) {
         ContentValues contentValues = new ContentValues();
         contentValues.put("tag", context.getPackageName() + "/" +
-                com.xys.badge_lib.AppInfoUtil.getLauncherClassName(context));
+                AppInfoUtil.getLauncherClassName(context));
         contentValues.put("count", count);
         context.getContentResolver().insert(Uri.parse("content://com.teslacoilsw.notifier/unread_count"),
                 contentValues);

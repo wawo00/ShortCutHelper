@@ -1,4 +1,4 @@
-package com.xys.shortcut_lib;
+package com.roy.shortcut_lib;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -20,23 +20,35 @@ public final class FlowEntranceUtil {
      * @param context       context
      * @param launcherClass launcherClass
      */
-    public static void toggleFlowEntrance(Context context, Class launcherClass) {
+    public static void toggleFlowEntrance(Context context, Class launcherClass,boolean visible) {
         PackageManager packageManager = context.getPackageManager();
         ComponentName componentName = new ComponentName(context, launcherClass);
         int res = packageManager.getComponentEnabledSetting(componentName);
-        if (res == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT ||
-                res == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
+        if (visible){
+            packageManager.setComponentEnabledSetting(
+                    componentName,
+                    PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,
+                    PackageManager.DONT_KILL_APP);
+        }else{
             // 隐藏应用图标
             packageManager.setComponentEnabledSetting(
                     componentName,
                     PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                     PackageManager.DONT_KILL_APP);
-        } else {
-            // 显示应用图标
-            packageManager.setComponentEnabledSetting(
-                    componentName,
-                    PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,
-                    PackageManager.DONT_KILL_APP);
         }
+//        if (res == PackageManager.COMPONENT_ENABLED_STATE_DEFAULT ||
+//                res == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
+//            // 隐藏应用图标
+//            packageManager.setComponentEnabledSetting(
+//                    componentName,
+//                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+//                    PackageManager.DONT_KILL_APP);
+//        } else {
+//            // 显示应用图标
+//            packageManager.setComponentEnabledSetting(
+//                    componentName,
+//                    PackageManager.COMPONENT_ENABLED_STATE_DEFAULT,
+//                    PackageManager.DONT_KILL_APP);
+//        }
     }
 }

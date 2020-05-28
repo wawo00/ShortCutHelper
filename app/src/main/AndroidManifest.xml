@@ -17,7 +17,7 @@
         </activity>
 
         <activity
-            android:name="com.xys.shortcut_lib.ShortcutActivity"
+            android:name=".ShortcutActivity"
             android:theme="@style/Base.Theme.AppCompat.Dialog">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />

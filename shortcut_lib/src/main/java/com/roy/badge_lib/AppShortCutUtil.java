@@ -1,4 +1,4 @@
-package com.xys.badge_lib;
+package com.roy.badge_lib;
 
 import android.content.ContentResolver;
 import android.content.Context;

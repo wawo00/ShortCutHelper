@@ -1,7 +1,9 @@
-package com.xys.shortcut_lib;
+package com.xys.shortcuthelper;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.xys.shortcut_lib.R;
 
 /**
  * 通过指定多个Launcher入口实现

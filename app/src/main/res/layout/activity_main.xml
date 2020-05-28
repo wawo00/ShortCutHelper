@@ -8,7 +8,7 @@
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context="com.xys.shortcut_lib.ShortcutActivity">
+             >
 
     <Button
         android:layout_width="match_parent"
@@ -55,7 +55,11 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="cleanMadMode"
         android:text="恢复清醒"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="hideIcon"
+        android:text="隐藏icon"/>
 
 </LinearLayout>

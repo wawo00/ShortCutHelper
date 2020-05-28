@@ -1,8 +1,13 @@
-package com.xys.shortcut_lib;
+package com.roy.shortcut_lib;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ProviderInfo;
 import android.graphics.Bitmap;
+
+import java.util.List;
 
 /**
  * Created by xuyisheng on 15/10/30.
@@ -30,6 +35,7 @@ public final class ShortcutUtils {
      */
     public static void addShortcut(Context context, Intent actionIntent, String name,
                                    boolean allowRepeat, Bitmap iconBitmap) {
+        getAuthorityFromPermission(context,"com.android.launcher.permission.READ_SETTINGS");
         Intent addShortcutIntent = new Intent(ACTION_ADD_SHORTCUT);
         // 是否允许重复创建
         addShortcutIntent.putExtra("duplicate", allowRepeat);
@@ -41,7 +47,22 @@ public final class ShortcutUtils {
         addShortcutIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, actionIntent);
         context.sendBroadcast(addShortcutIntent);
     }
-
+   public  static String getAuthorityFromPermission(Context context, String permission){
+        if (permission == null) return null;
+        List<PackageInfo> packs = context.getPackageManager().getInstalledPackages(PackageManager.GET_PROVIDERS);
+        if (packs != null) {
+            for (PackageInfo pack : packs) {
+                ProviderInfo[] providers = pack.providers;
+                if (providers != null) {
+                    for (ProviderInfo provider : providers) {
+                        if (permission.equals(provider.readPermission)) return provider.authority;
+                        if (permission.equals(provider.writePermission)) return provider.authority;
+                    }
+                }
+            }
+        }
+        return null;
+    }
     /**
      * 移除快捷方式
      *

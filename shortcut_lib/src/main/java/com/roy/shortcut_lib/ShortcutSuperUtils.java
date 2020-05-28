@@ -1,4 +1,4 @@
-package com.xys.shortcut_lib;
+package com.roy.shortcut_lib;
 
 import android.content.ComponentName;
 import android.content.ContentResolver;
