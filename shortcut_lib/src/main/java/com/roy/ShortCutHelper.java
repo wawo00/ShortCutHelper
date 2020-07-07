@@ -67,6 +67,7 @@ public class ShortCutHelper {
             ShortcutInfo info = new ShortcutInfo.Builder(context, shortCutName)
                     .setIcon(Icon.createWithResource(context, iconResId))
                     .setIntent(shortcutInfoIntent)
+                    .setShortLabel("11111")
                     .build();
             //当添加快捷方式的确认弹框弹出来时，将被回调CallBackReceiver里面的onReceive方法
             PendingIntent shortcutCallbackIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, ShortCutReceiver.class), PendingIntent.FLAG_UPDATE_CURRENT);
